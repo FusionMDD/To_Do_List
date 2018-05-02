@@ -1,0 +1,97 @@
+<!Doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>To do app</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='stylesheets/main.css') }}">
+</head>
+<body>
+  <style>
+  html
+  {
+    background-color: #07393C;
+    height: 100%;
+  }
+  body
+  {
+    background-color: #2C666E;
+    margin: 0;
+    height: 100%;
+  }
+  li
+  {
+  list-style-type: none;
+  }
+  #text
+  {
+
+
+  }
+  #text1
+  {
+    margin-left: 3%;
+    color: #2C666E;
+  }
+  #header1
+  {
+    border-bottom-left-radius:15px;
+    border-bottom-right-radius: 15px;
+    background-color: #07393C;
+    margin: 0;
+    padding: 0;
+  }
+  #container
+  {
+    margin-left: 10px;
+
+  }
+  #form
+  {
+    padding-top: 1%;
+    font-size: 200%;
+    width: 15%;
+    background-color: #07393C;
+    border: 0;
+    border-radius: 12px;
+    color: #2C666E;
+  }
+  #clr
+  {
+    margin-top:5px;
+
+
+  }
+  </style>
+  <div id="header1"><h1 id="text1">To do list</h1></div>
+  <div id="container">
+<div> Add new todo item
+
+    <form action="{{url_for('add')}}" method="POST">
+      <div >
+       <input id="form" type="text" name="todoitem">
+       <input type="image" id="image2"  width=30px hspace=8 margin-top=15px src="{{ user_image2 }}" alt="User Image">
+     </div>
+    </form>
+
+ </div>
+ <form action="/clear" method="POST" >
+			<input type="image" id="clr" width=30px hspace=8  src="{{ user_image3 }}" alt="User Image"  margin="5px" >
+		</form>
+<div>
+        <h2>Incomplete items</h2>
+        <ul>
+          {% for todo in incomplete %}
+              <li style="font-size: 40pt">{{todo.text}}<a href="{{url_for('complete',id=todo.id)}}"><img width=30px hspace=8 margin-top=15px src="{{ user_image }}" alt="User Image"></a></li>
+          {% endfor %}
+        </ul>
+
+        <h2>Complete items</h2>
+        <ul>
+          {% for todo in complete %}
+              <li style="font-size: 30pt">{{todo.text}}</li>
+          {% endfor %}
+        </ul>
+</div>
+</div>
+</body>
+</html>
